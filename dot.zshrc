@@ -21,3 +21,5 @@ export PAGER=less
 # This will set the default prompt to the walters theme
 # prompt walters
 prompt fade blue 
+
+export PATH=$PATH:~/bin

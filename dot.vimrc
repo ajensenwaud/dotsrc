@@ -48,3 +48,6 @@ if !has("gui_running")
  nmap <Leader>tp :tabprevious<cr>
  nmap <Leader><F4> :tabclose<cr>
 end
+
+"settings for mutt:
+au BufRead /tmp/mutt-* set tw=72
