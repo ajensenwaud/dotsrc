@@ -6,13 +6,14 @@ autoload -U compinit promptinit
 compinit
 promptinit
 
+autoload colors
 colors
 # autocompletion of command line switches for aliases
 setopt completealiases
 
 # some aliases:
-alias ll='ls -al'
-alias ls='ls -CFb'
+alias ll='ls -alFG'
+alias ls='ls -FG'
 alias j='jobs -lpd'
 alias ...='cd ../..'
 alias ....='cd ../../..'
