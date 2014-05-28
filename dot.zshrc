@@ -22,4 +22,4 @@ export PAGER=less
 # prompt walters
 prompt fade blue 
 
-export PATH=$PATH:~/bin
+export PATH=$PATH:~/bin:~/scala/bin
