@@ -1,6 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/home/aj/.mutt'
 let g:netrw_dirhist_2='/home/aj/.offlineimap'
 let g:netrw_dirhist_3='/home/aj/.mutt'
 let g:netrw_dirhist_4='/Users/aj/scala'
+let g:netrw_dirhist_5='/Users/aj/the_pantry/public/thepantry/services'
+let g:netrw_dirhist_6='/Users/aj/the_pantry/public/thepantry'
+let g:netrw_dirhist_7='/Users/aj/the_pantry/public'
+let g:netrw_dirhist_8='/Users/aj/.offlineimap'

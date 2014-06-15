@@ -1,0 +1,15 @@
+set from  = "hest2@hest.dk"
+set sendmail = "/usr/local/Cellar/msmtp/1.4.32/bin/msmtp -a account2"
+set mbox_type = Maildir
+set folder = "~/Maildir/account2"
+set mbox = +archive
+set spoolfile = +inbox
+set postponed = +drafts
+#set trash = +trash
+unset record
+mailboxes +inbox
+
+set move = no
+my_hdr From: "Bob Mould"  <hest2@hest.dk>
+
+#color status yellow blue

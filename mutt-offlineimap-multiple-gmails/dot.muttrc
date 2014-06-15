@@ -1,0 +1,95 @@
+source ~/.mutt/accounts/account1
+source ~/.mutt/mutt-colors-solarized-dark-256.muttrc # import solarized theme
+
+folder-hook account1/* source ~/.mutt/accounts/account1
+folder-hook account2/* source ~/.mutt/accounts/account2
+
+set move = no
+set send_charset="iso-8859-15"
+
+# set up aliases: 
+set alias_file = "~/.mutt/aliases"
+set sort_alias = alias
+set reverse_alias = yes
+source $alias_file
+
+# threads
+set sort=threads
+set pager_index_lines=8
+
+# Allow edit headers at compose time
+set edit_hdrs
+
+# heeaders I don'want to be displayed
+ignore received return-path ignore content- precedence x-sun
+ignore message-id mime-version resent-to x-loop x-mailing-list status x-status
+ignore path illegal-object xref nntp-posting-host lines references x-sender
+ignore sender x-url x-uri x-roberto x-remibp x-authentication- x400-
+ignore x-operating-system in-reply-to subject disclaimer x-face
+ignore x-phone x-pgp-fingerprint x-disclaimer x-pgp-keyid resent-message-id
+ignore resent-received resent-date
+ignore x-confirm-reading x-pmrqc old-return-path encoding
+ignore discarded-x400 sensitivity importance autoforwarded
+ignore original-encoded- x-mts comments x-received
+ignore x-msmail- x-priority x-mailer
+ignore List-Help List-Post List-Subscribe List-Id List-Unsubscribe List-Archive
+
+# colours 
+#
+## Color definitions (old/prior to Solarized theme)
+##
+#color normal white black
+#color hdrdefault brightcyan black
+#color quoted yellow blue
+#color signature brightred black
+#color indicator brightcyan blue
+#color error black yellow
+#color status yellow blue
+#color tree magenta black        # the thread tree in the index menu
+#color tilde magenta black
+#color message cyan black
+#color markers cyan black
+#color attachment magenta black
+#color search black green        # how to hilite search patterns in the pager
+#color header yellow black ^(From|Subject):
+#color body yellow black "(ftp|http)://[^ ]+"    # point out URLs
+#color body cyan black [-a-z_0-9.]+@[-a-z_0-9.]+ # e-mail addresses
+#color underline green black
+
+# key bindings
+#bind editor <space> noop
+macro index,pager y "<save-message>=[Gmail]/All Mail<enter><enter>" "Archive"
+macro index,pager d "<save-message>=trash<enter><enter>" "Trash"
+macro index gi "<change-folder>=inbox<enter>" "Go to inbox"
+macro index ga "<change-folder>=archive<enter>" "Go to all mail"
+macro index gs "<change-folder>=sent<enter>" "Go to Sent Mail"
+macro index gd "<change-folder>=postponed<enter>" "Go to drafts"
+
+## Shortcuts
+macro index,pager g1 '<sync-mailbox><enter-command>source ~/.mutt/accounts/account1<enter><change-folder>!<enter>'
+macro index,pager g2 '<sync-mailbox><enter-command>source ~/.mutt/accounts/account2<enter><change-folder>!<enter>'
+#macro index wi "<change-folder>~/Maildir/account2" "Go to work inbox"
+#macro index hi "<change-folder>~/Maildir/account1" "Go to home inbox"
+
+# Gmail style keybindings
+#bind  editor <space> noop
+#bind  index,pager c  mail 		#Compose
+macro index,pager e  "<save-message>=archive<enter><enter>" "Archive conversation"
+bind  generic     x  tag-entry		#Select Conversation
+bind  index       x  tag-thread		#Select Conversation
+bind  pager       x  tag-message	#Select Conversation
+bind  index,pager s  flag-message	#Star a message
+#macro index,pager !  <save-message>=spam<enter> "Report spam"
+bind  index,pager a  group-reply	#Reply all
+#bind  index,pager \# delete-thread	#Delete
+#bind  index,pager l  copy-message	#Label
+#bind  index,pager v  save-message	#Move to
+#macro index,pager I  <set-flag>O	"Mark as read"
+#macro index,pager U  <clear-flag>O	"Mark as unread"
+#macro index,pager ga "<change-folder>=archive<enter>"	"Go to all mail"
+#macro index,pager gd <change-folder>=drafts<enter>	"Go to 'Drafts'"
+macro index,pager gl <change-folder>?				"Go to 'Label'"
+macro index,pager gi <change-folder>=inbox<enter> 		"Go to inbox"
+macro index,pager gt "<change-folder>=sent<enter>"	"Go to 'Sent Mail'"
+folder-hook +INBOX 'macro index,pager y "<save-message>=archive<enter><enter>" "Archive conversation"'
+folder-hook +[Gmail]/Trash macro index,pager y <save-message>=inbox<enter><enter> "Move to inbox"

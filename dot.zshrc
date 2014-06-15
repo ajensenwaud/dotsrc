@@ -27,4 +27,7 @@ export PAGER=less
 prompt walters
 #prompt fade blue 
 
+
 export PATH=$PATH:~/bin:~/scala/bin
+export GOPATH=$HOME/gocode
+

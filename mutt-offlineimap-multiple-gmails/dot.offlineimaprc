@@ -1,0 +1,98 @@
+[general
+# List of accounts to be synced, separated by a comma.
+accounts = account1, account2
+
+[Account  account1]
+# Identifier for the local repository; e.g. the maildir to be synced via IMAP.
+localrepository = account1-local
+# Identifier for the remote repository; i.e. the actual IMAP, usually non-local.
+remoterepository = account1-remote
+# Status cache. Default is plain, which eventually becomes huge and slow.
+status_backend = sqlite
+
+[Repository account1-local]
+# Currently, offlineimap only supports maildir and IMAP for local repositories.
+type = Maildir
+# Where should the mail be placed?
+localfolders = ~/Maildir/account1
+nametrans = lambda folder: {
+  'important': '[Gmail]/Important', 
+  'archive': '[Gmail]/All Mail',
+  'drafts': '[Gmail]/Drafts', 
+  'flagged': '[Gmail]/Starred',
+  'inbox': 'INBOX',
+  'priority': 'Priority',
+  'sent': '[Gmail]/Sent Mail',
+  'trash': '[Gmail]/Trash'}.get(folder, folder)
+
+[Repository account1-remote]
+# Remote repos can be IMAP or Gmail, the latter being a preconfigured IMAP.
+type = Gmail
+remoteuser = hest@hest.dk
+remotepass = xxx
+folderfilter = lambda foldername: foldername not in [ '[Gmail]/Spam' ]
+# Necessary as of OfflineIMAP 6.5.4
+maxconnections = 1
+#sslcacertfile = /usr/local/share/certs/ca-root-nss.crt (FreeBSD)
+sslcacertfile = /Users/aj/Certificates.cer
+
+nametrans = lambda folder: {                            
+  '[Gmail]/Important': 'important',
+  '[Gmail]/Spam': 'spam',
+  '[Gmail]/All Mail': 'archive',
+  '[Gmail]/Drafts': 'drafts',
+  '[Gmail]/Starred': 'flagged',
+  'INBOX': 'inbox',
+  'Priority': 'priority', 
+  '[Gmail]/Sent Mail': 'sent', 
+  '[Gmail]/Trash': 'trash'}.get(folder,folder)
+
+[Account account2]
+# Identifier for the local repository; e.g. the maildir to be synced via IMAP.
+localrepository = account2-local
+# Identifier for the remote repository; i.e. the actual IMAP, usually non-local.
+remoterepository = account2-remote
+# Status cache. Default is plain, which eventually becomes huge and slow.
+status_backend = sqlite
+
+[Repository account2-local]
+# Currently, offlineimap only supports maildir and IMAP for local repositories.
+type = Maildir
+# Where should the mail be placed?
+localfolders = ~/Maildir/account2
+
+nametrans = lambda folder: {
+  'important': '[Gmail]/Important', 
+  # 'archive': '[Gmail]/All Mail',
+  #'drafts': '[Gmail]/Drafts', 
+  'flagged': '[Gmail]/Starred',
+  'inbox': 'INBOX',
+  'priority': 'Priority',
+  'openbsd-tech': 'openbsd-tech',
+  'openbsd-ports': 'openbsd-ports', 
+  'openbsd-misc': 'openbsd-misc', 
+  'sent': '[Gmail]/Sent Mail',
+  'trash': '[Gmail]/Trash'}.get(folder, folder)
+
+[Repository account2-remote]
+# Remote repos can be IMAP or Gmail, the latter being a preconfigured IMAP.
+type = Gmail
+remoteuser = hest2@hest.dk
+remotepass = xx
+# Necessary as of OfflineIMAP 6.5.4
+maxconnections = 1
+#sslcacertfile = /usr/local/share/certs/ca-root-nss.crt (FreeBSD)
+sslcacertfile = /Users/aj/Certificates.cer
+
+nametrans = lambda folder: {                            
+  '[Gmail]/Important': 'important',
+  '[Gmail]/Spam': 'spam',
+  '[Gmail]/Starred': 'flagged',
+  'INBOX': 'inbox',
+  'Priority': 'priority', 
+  'openbsd-tech': 'openbsd-tech', 
+  'openbsd-ports': 'openbsd-ports', 
+  'openbsd-misc': 'openbsd-misc',
+  '[Gmail]/Sent Mail': 'sent', 
+  '[Gmail]/Trash': 'trash'}.get(folder,folder)
+
