@@ -27,7 +27,33 @@ export PAGER=less
 prompt walters
 #prompt fade blue 
 
+# gpg agent:
+#local GPG_ENV=$HOME/.gnupg/gpg-agent.env
 
-export PATH=$PATH:~/bin:~/scala/bin
-export GOPATH=$HOME/gocode
+#function start_agent {
+  # TODO: Modify for Debian
+ #/usr/bin/env gpg-agent --daemon --pinentry-program /usr/local/bin/pinentry-curses --enable-ssh-support --write-env-file ${GPG_ENV} > /dev/null
+  #chmod 600 ${GPG_ENV}
+  #. ${GPG_ENV} > /dev/null
+#
+# Source GPG agent settings, if applicable
+#if [ -f "${GPG_ENV}" ]; then
+#  . ${GPG_ENV} > /dev/null
+#  ps -ef | grep ${SSH_AGENT_PID} | grep gpg-agent > /dev/null || {
+#    start_agent;
+#  }
+#else
+#  start_agent;
+#fi
+
+#export GPG_AGENT_INFO
+#export SSH_AUTH_SOCK
+#export SSH_AGENT_PID
+# end gpg agent
+
+#GPG_TTY=$(tty)
+#export GPG_TTY
+# 
+export PATH=$PATH:~/bin:/usr/local/bin:/usr/local/share/dotnet
+
 
