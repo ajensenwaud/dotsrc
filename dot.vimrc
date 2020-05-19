@@ -1,9 +1,21 @@
-execute pathogen#infect()
+call plug#begin('~/.vim/plugged')
+
+
+" On-demand loading
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-fireplace'
+Plug 'vim-airline/vim-airline' 
+Plug 'fatih/vim-go'
+Plug 'lifepillar/vim-solarized8'
+
+" Initialize plugin system
+call plug#end()
+
 syntax on
 filetype plugin indent on
-color zenburn
 
-
+set background=light
+colorscheme solarized8
 set modeline
 set tabstop=2
 set shiftwidth =2
